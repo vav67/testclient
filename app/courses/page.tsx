@@ -10,8 +10,9 @@ type Props = {};
 
 
 const Page = (props: Props) => {
-  const vv ="https://lmsserver-eta.vercel.app/api/v1/get-courses"
- //  "https://lmsserver-eta.vercel.app/test"
+  const vv ="https://lmsserver-three.vercel.app/api/v1/get-courses"
+  
+ //  "https://lmsserver-three.vercel.app/test"
 
     const [data, setData] =useState<Cour[]>([])
  
