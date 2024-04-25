@@ -6,8 +6,10 @@ type Cour = {
     description:string;
 }
 
+type Props = {};
 
-const page = () => {
+
+const Page = (props: Props) => {
   const vv ="https://lmsserver-eta.vercel.app/api/v1/get-courses"
  //  "https://lmsserver-eta.vercel.app/test"
 
@@ -41,4 +43,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Page
