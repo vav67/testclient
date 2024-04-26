@@ -18,7 +18,7 @@ const nextConfig = {
            
            {
              protocol: 'https',
-             hostname: 'lmsserver-eta.vercel.app',
+             hostname: 'lmsserver-three.vercel.app',
              pathname: '**',
            },     
        ],
