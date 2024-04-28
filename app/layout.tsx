@@ -3,9 +3,15 @@
 import React, { FC, useEffect, useState } from "react";
  import "./globals.css";
 import { Poppins } from "next/font/google";
+                     import { Toaster } from "react-hot-toast";
 import { Josefin_Sans } from "next/font/google";
 import { Providers } from "./Provider";
 import { ThemeProvider } from "./utils/theme-provider"; //импортируем нашу тем
+
+import { useLoadUserQuery } from "@/redux/features/api/apiSlice";
+import Loader from "./components/Loader/Loader";
+
+
 
 //добавили шрифты (использ они в tailwind.config.ts)
 const poppins = Poppins({
@@ -38,7 +44,11 @@ export default function RootLayout({
       
       <ThemeProvider attribute= 'class'  defaultTheme="light" > 
       {/* defaultTheme='system' enableSystem={true}  > */}
-      {children} 
+      
+      <Custom>  <div>{children}</div>  </Custom>
+
+      <Toaster position="top-center" reverseOrder={false} />
+
       </ThemeProvider>
 
       </Providers>
@@ -46,3 +56,13 @@ export default function RootLayout({
     </html>
   );
 }
+
+
+
+const Custom: FC<{ children: React.ReactNode }> = ({ children }) => {
+ 
+  const { isLoading } = useLoadUserQuery({});
+
+ 
+  return <>{isLoading ? <Loader /> : <div>{children}</div>}</>;
+};

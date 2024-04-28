@@ -2,6 +2,7 @@ import { apiSlice } from "../api/apiSlice";
 
 //Курсы 
 export const courseApi = apiSlice.injectEndpoints({
+
   endpoints: (builder) => ({
  // создание курса   
     createCourse: builder.mutation({
@@ -12,6 +13,7 @@ export const courseApi = apiSlice.injectEndpoints({
         credentials: "include" as const,
       }),
     }),
+    
 //выбрать все курсы , только администратор
     getAllCourses: builder.query({
       query: () => ({
