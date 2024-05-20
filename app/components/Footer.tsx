@@ -1,65 +1,9 @@
-"use client";
-import { useLoadUserQuery } from "@/redux/features/api/apiSlice";
- import Link from "next/link";
-import React, { FC, useEffect, useState } from "react";
- 
-
-
-// import Link from 'next/link'
-// import React from 'react'
+import Link from 'next/link'
+import React from 'react'
 
 type Props = {}
 
 const Footer = (props: Props) => {
-
-   const {data:userData, isLoading, error, refetch} = useLoadUserQuery(undefined, {});
- // const {data:userData, isLoading } = useLoadUserQuery(  {});
-
-
-
-
-  
-  useEffect( () => {
- 
-  if (!isLoading) { //загрузка окончена
-   
-   
-   console.log( '!!!!!!!!==Footer=== data=',  userData) 
-     if (!userData) {
-
-
-       //  if (data) {
-       // socialAuth({   //передаем данные для запроса в бд
-       //   email: data?.user?.email,
-       //   name: data?.user?.name,
-       //   avatar: data?.user?.image,
-       // });
-       // refetch();
-       // }
-     }
-
-   
- // if (data === null) {
- // //  console.log( ' Header  useEffect (data === null isSuccess=получены)  data=', data,
- //   //     ' user=', user)     
- //     //данные получены от useRegisterMutation    
- //     if (isSuccess) { toast.success("Login Successfuly") }
- //  }
-  
- //  if (data === null && !isLoading && !userData){
- //     // так как хук useLoadUserQuery внутри ф-ции не работант , то записываем в переменную   
- //      setLogout(true) // что инициирует запрос выхода через useLoadUserQuery
- //      }
- }
-  if (error) { //загрузка окончена
-      
-  console.log( '!!!!!!!!==Footer==ОШИБКА error= ',  error) 
-  }
-
-
-}, [userData, isLoading, error]); // data, 
-
-
   return (
     <footer>
       <div className="border border-[#0000000e] dark:border-[#ffffff1e]" />

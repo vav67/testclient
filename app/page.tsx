@@ -3,7 +3,10 @@
 import React, { FC, useState } from "react";
 import Heading from "./utils/Heading";
 import Header from "./components/Header";
+import Hero from "./components/Route/Hero";
 import Courses from "./components/Route/Courses";
+  import Reviews from "./components/Route/Reviews";
+ import FAQ from "./components/FAQ/FAQ";
 
 import Footer from "./components/Footer";
 //import Hheader from "./components/Hheader";
@@ -27,7 +30,7 @@ import Footer from "./components/Footer";
      
   <div>
   <Heading
-        title="01-ELearning-oK"
+        title="2-ELearning-oK"
         description=" Ini adaldjf sd odf s ofj sdf pfosjdfsj sdf s"
         keywords="Makan, Enak, Jangan, Makan, Tidur"
       />
@@ -42,9 +45,13 @@ import Footer from "./components/Footer";
          route={route} 
       />          
 
-      {/* <Hheader /> */}
- <Courses />        
+     
+      <Hero />    
+        <Courses />   
+         <Reviews />       
 
+
+ <FAQ />  
  <Footer />  
   </div>
   

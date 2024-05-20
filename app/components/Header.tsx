@@ -66,7 +66,9 @@ import React, { FC, useEffect, useState } from "react";
      //если вы хотите предпринять дополнительные действия (например, отправить запрос на сервер) перед
      // выходом пользователя из системы. Это может быть полезно, например, для очистки данных на стороне 
      //сервера перед завершением сеанса пользователя.
-   const {} = useLogOutQuery(undefined, {skip: !logout ? true : false,   });
+
+     
+ ////// пока нет   const {} = useLogOutQuery(undefined, {skip: !logout ? true : false,   });
 
 
   //получим данные
