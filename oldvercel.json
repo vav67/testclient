@@ -1,0 +1,14 @@
+{
+  "version": 2,
+ 
+  "builds": [
+    {
+      "env": {
+        "NEXT_PUBLIC_SERVER_URI": "https://nlmserver.vercel.app/api/v1"
+      }
+    }
+    
+   ]
+
+  
+ }
