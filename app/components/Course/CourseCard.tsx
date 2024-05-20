@@ -25,9 +25,10 @@ const CourseCard: FC<Props> = ({ item, isProfile }) => {
     
    <Image
           src={item.thumbnail.url}
-          width={500}
-          height={300}
-          objectFit="contain"
+           width={500} //https://nextjs.org/docs/pages/api-reference/components/image#priority
+           height={300}
+       //   objectFit="contain"  -Удаляет objectFitопору в пользу styleилиclassName
+       sizes="( width: 500px) , ( width: 300px)   "
           className="rounded w-full"
           alt=""
         />   

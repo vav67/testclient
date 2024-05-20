@@ -1,4 +1,5 @@
 "use client";
+import { styles } from "@/app/styles/style";
 import React, { useEffect, useState } from 'react'
 
 type Cour = {
@@ -10,7 +11,7 @@ type Props = {};
 
 
 const Page = (props: Props) => {
-  const vv ="https://lmsserver-three.vercel.app/api/v1/get-courses"
+  const vv ="https://nlmserver.vercel.app/api/v1/get-courses"
   
  //  "https://lmsserver-three.vercel.app/test"
 
@@ -33,13 +34,26 @@ const Page = (props: Props) => {
   },  [] )
 
 
-//data[0].name
+  const verificationHandler = async () => {
+    console.log( 'test')
+
+   };
+
+
+
+
 
   return (
     <>
     <div className=' text-center font-Poppins text-[45px] dark:text-white'
     >PProba === { data[0]?.name } </div>
    <div>  PProba === { data[0]?.description } </div>
+   <div className="w-full flex justify-center">
+        <button className={`${styles.button}`} onClick={verificationHandler}>
+          {" "}
+          Verify OTP
+        </button>
+      </div>  
    </>
   )
 }

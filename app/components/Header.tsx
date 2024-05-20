@@ -6,6 +6,14 @@ import React, { FC, useEffect, useState } from "react";
  import { HiOutlineMenuAlt3  } from "react-icons/hi";
    import {   HiOutlineUserCircle,  HiUser } from "react-icons/hi"
 
+   import CustomModal from "../utils/CustomModal";
+
+   import Login from "./Auth/Login";  //вход
+   import Signup from "./Auth/SignUp"; // регистрация
+    import Verification from "./Auth/Verification";
+
+    import { useLoadUserQuery } from "@/redux/features/api/apiSlice";
+
 
 
 
@@ -13,20 +21,58 @@ import React, { FC, useEffect, useState } from "react";
     open: boolean;  //наш набор открыт
     setOpen: (open: boolean) => void;
     activeItem: number; //активный
-    //  route: string;
-    //   setRoute: (route: string) => void;
+     route: string;
+     setRoute: (route: string) => void;
   }
 
-//const Header: FC<Props> = (props) => {   //  , route, setRoute
-const Header: FC<Props> = ({  activeItem, setOpen, open   }) => {
-    const [active, setActive] = useState(false);
+
+//const Header = () => {   //  , route, setRoute
+const Header: FC<Props> = ({  activeItem, setOpen, open , route, setRoute  }) => {
+  
+  
+     const [active, setActive] = useState(false);
     const [openSidebar, setOpenSidebar] = useState(false);
 
-   
- 
-   
+    const {data:userData, isLoading,  error, refetch} = useLoadUserQuery(undefined, {});
 
- 
+
+    useEffect( () => {
+           if (!isLoading) { //загрузка окончена
+        
+    console.log( '!!!!!!!!!! Header    data=',  userData) 
+      if (!userData) {
+    //  if (data) {
+        // socialAuth({   //передаем данные для запроса в бд
+        //   email: data?.user?.email,
+        //   name: data?.user?.name,
+        //   avatar: data?.user?.image,
+        // });
+        // refetch();
+        // }
+      }
+
+    
+  // if (data === null) {
+  // //  console.log( ' Header  useEffect (data === null isSuccess=получены)  data=', data,
+  //   //     ' user=', user)     
+  //     //данные получены от useRegisterMutation    
+  //     if (isSuccess) { toast.success("Login Successfuly") }
+  //  }
+   
+  //  if (data === null && !isLoading && !userData){
+  //     // так как хук useLoadUserQuery внутри ф-ции не работант , то записываем в переменную   
+  //      setLogout(true) // что инициирует запрос выхода через useLoadUserQuery
+  //      }
+  }
+  if (error) { //загрузка окончена
+           console.log( '!!!!!!!! Header  ====ОШИБКА error= ',  error) 
+    }
+  
+
+}, [userData, isLoading, error]); // data, 
+
+
+
 
 if (typeof window !== "undefined") {
     window.addEventListener("scroll", () => {
@@ -74,30 +120,30 @@ if (typeof window !== "undefined") {
 
 
       <div className="flex items-center">
-               <NavItems activeItem={activeItem} isMobile={false} />
+              <NavItems activeItem={activeItem} isMobile={false} />  
            
                <div   className={` text-black dark:text-white`} //сам добавил
             ><ThemeSwitcher   /></div>
                
    
         {/* only for moblile  иконка меню */}
-              <div className="800px:hidden">
+            <div className="800px:hidden">
                 <HiOutlineMenuAlt3
                   size={25}
                   className="cursor-pointer  dark:text-white   text-black"
             //отображ боковая панель меню мобил      
                   onClick={() =>  setOpenSidebar(true)}
                 />
-              </div>
+              </div>  
               <HiOutlineUserCircle
                   size={25}   // Иконка нашего профиля
                   className="hidden 800px:block cursor-pointer  dark:text-white  text-black "
-                  onClick={() => setOpen(true)}
+                 // onClick={() => setOpen(true)}
                 />
                </div>
       </div>
       </div>
-
+ 
       {openSidebar && (
           <div //кликаем слева от боковой панели и она закроется
           className="fixed w-full h-screen top-0 left-0 z-[99999] dark:bg-[unset] bg-[#00000024]"
@@ -113,11 +159,76 @@ if (typeof window !== "undefined") {
             </p>
           </div>
         </div>
-      )}
+      )} 
+
+
 
 
 </div>
-      </div>
+
+
+{route === "Login" && (
+  <>
+    {open && (
+      <>
+       <br />
+       <p className="text-[16px] px-2 pl-5 text-black dark:text-white">
+       THIS a otkrito======================          </p>
+      </>
+    )}
+    <br />
+            <p className="text-[16px] px-2 pl-5 text-black dark:text-white">
+              THIS a LOGIN            </p>
+  </>
+)}
+
+
+        {/* {route === "Login" && (
+     <>
+        {open && (
+ <CustomModal
+   open={open}
+   setOpen={setOpen}
+   setRoute={setRoute}
+   activeItem={activeItem}
+   component={Login}
+ // refetch={refetch}
+            />
+         )}
+      </>
+    )}
+    {route === "Sign-Up" && (
+    <>
+       {open && (
+ <CustomModal
+   open={open}
+   setOpen={setOpen}
+   setRoute={setRoute}
+   activeItem={activeItem}
+   component={Signup}
+          />
+          )}  
+     </>
+    )}   */}
+     {/* {route === "Verification" && (
+      <>
+         {open && (
+   <CustomModal
+              open={open}
+             setOpen={setOpen}
+             setRoute={setRoute}
+             activeItem={activeItem}
+             component={Verification}
+        />
+          )}
+      </>
+    )} */}
+
+
+</div>
+
+
+
   )
 
   }

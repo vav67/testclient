@@ -1,3 +1,4 @@
+"use client";
 import { useGetUsersAllCoursesQuery } from "@/redux/features/courses/coursesApi";
 import React, { useEffect, useState } from "react";
  import CourseCard from "../Course/CourseCard";
@@ -26,7 +27,7 @@ const Courses = (props: Props) => {
   return (
     <div>
     {isLoading ? (
-      <p>Loading...</p>
+      <p>Loading(Courses)...</p>
     ) : (
       <div className={`w-[90%] 800px:w-[80%] m-auto`}>
         <h1 className="text-center font-Poppins text-[25px] leading-[35px]

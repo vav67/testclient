@@ -1,3 +1,5 @@
+
+
 import { apiSlice } from "../api/apiSlice";
 import { userLoggedIn, userLoggedOut, userRegistration } from "./authSlice";
 
@@ -33,7 +35,7 @@ export const authApi = apiSlice.injectEndpoints({
 //include - всегда отправляйте учетные данные пользователя 
 // (файлы cookie, базовую HTTP-аутентификацию и т. д.), даже
 // для вызовов между источниками. 
-            credentials: "include" as const,
+            credentials: "include" as const, //передает куки -включать в запрос все файлы cookie, связанные с доменом
               }),
  /**Часто при работе с асинхронными вызовами, до и после отправки запроса,
 * необходимо осуществить дополнительное действие. Для этих целей стоит использовать 
