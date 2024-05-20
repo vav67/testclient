@@ -45,8 +45,8 @@ export default function RootLayout({
       <ThemeProvider attribute= 'class'  defaultTheme="light" > 
       {/* defaultTheme='system' enableSystem={true}  > */}
       
-       <Custom>  <div>{children}</div>  </Custom>
-      {/* {children} */}
+       {/* <Custom>  <div>{children}</div>  </Custom> */}
+      {children}  
 
       <Toaster position="top-center" reverseOrder={false} />
 
@@ -60,12 +60,12 @@ export default function RootLayout({
 
 
 
-const Custom: FC<{ children: React.ReactNode }> = ({ children }) => {
+// const Custom: FC<{ children: React.ReactNode }> = ({ children }) => {
  
-  const { isLoading, error } = useLoadUserQuery({});
+//   const { isLoading, error } = useLoadUserQuery({});
 
 
   
  
-  return <>{isLoading ? <Loader /> : <div>{children}</div>}</>;
-};
+//   return <>{isLoading ? <Loader /> : <div>{children}</div>}</>;
+// };

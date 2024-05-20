@@ -3,7 +3,8 @@ import type { Config } from "tailwindcss";
 const config: Config = {
   content: [
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./app/components/**/*.{js,ts,jsx,tsx,mdx}", //сам добавил
+    "./app/utils/**/*.{js,ts,jsx,tsx,mdx}", //сам добавил
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   darkMode:["class"], //подключили темную тему
