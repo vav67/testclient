@@ -55,8 +55,13 @@ import React, { FC, useEffect, useState } from "react";
   
  console.log( '**** Header ** сессия gogleвход data=', data)
 
+
+
+ const [log, setLog] = useState(false);
 //--------------пробую
-const {data:cookdata, isLoading:isloadcook, refetch:refcook} = useGetCookieQuery(undefined, {}); //получаю куки
+ // const {data:cookdata, isLoading:isloadcook } = useGetCookieQuery(undefined, { skip: !log ? true : false, });//получаю куки
+ const {data:cookdata, isLoading:isloadcook, refetch: refcook} = useGetCookieQuery(undefined, {});
+
 
 
    //получаем ответ от запроса социльной авториз-ции в таком виде
@@ -138,7 +143,7 @@ const {data:cookdata, isLoading:isloadcook, refetch:refcook} = useGetCookieQuery
  
 
 
-
+ 
 
 
  
@@ -151,7 +156,7 @@ useEffect( () => {
 
   }
 
-}, [ cookdata ])
+}, [ cookdata, refcook ])
 
  
 
@@ -209,6 +214,15 @@ useEffect( () => {
             <div  className={` text-black dark:text-white`} //сам добавил из за зависания
             ><ThemeSwitcher   /></div>  
                
+               <HiOutlineMenuAlt3
+                  size={55}
+                  className="cursor-pointer  dark:text-white   text-black"
+            //отображ боковая панель меню мобил      
+                  onClick={() =>   refcook()     } // setLog(true)}
+                />
+
+
+
    
         {/* only for moblile  иконка меню */}
               <div className="800px:hidden">
