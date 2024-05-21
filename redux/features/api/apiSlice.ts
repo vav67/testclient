@@ -16,7 +16,16 @@ export const apiSlice = createApi({
         credentials: "include" as const,
       }),
     }),
- 
+ //-----сам получить куки----------------------------------------
+  //  получить куки
+  getCookie: builder.query({
+    query: () => ({
+      url: "get-cookie",
+      method: "GET",
+      credentials: "include" as const,//полномочия включены
+    }),
+  }),
+
  // --------------------логинимся---------------------------------
    loadUser: builder.query({
   query: (data) => ({
@@ -47,6 +56,7 @@ export const apiSlice = createApi({
 })
 export const { 
         useRefreshTokenQuery, 
-        useLoadUserQuery 
+        useLoadUserQuery,
+        useGetCookieQuery  // сам получаю куки 
        
  } = apiSlice;                                

@@ -18,7 +18,7 @@ import React, { FC, useEffect, useState } from "react";
   import { useSession } from "next-auth/react";
   import { useLogOutQuery, useSocialAuthMutation } from "@/redux/features/auth/authApi";
  import toast from "react-hot-toast";
-  import { useLoadUserQuery } from "@/redux/features/api/apiSlice";
+  import { useGetCookieQuery, useLoadUserQuery } from "@/redux/features/api/apiSlice";
   import Loader from "./Loader/Loader";
  import { ThemeSwitcher } from "../utils/ThemeSwitcher"; //переключатель тем
 
@@ -54,6 +54,9 @@ import React, { FC, useEffect, useState } from "react";
   const { data } = useSession(); //получаем данные ссессии(Google на GitHub )
   
  console.log( '**** Header ** сессия gogleвход data=', data)
+
+//--------------пробую
+const {data:cookdata, isLoading:isloadcook, refetch:refcook} = useGetCookieQuery(undefined, {}); //получаю куки
 
 
    //получаем ответ от запроса социльной авториз-ции в таком виде
@@ -131,6 +134,24 @@ import React, { FC, useEffect, useState } from "react";
   }
  
 }, [data, userData, isLoading]);
+
+ 
+
+
+
+
+
+ 
+useEffect( () => {
+  console.log( ' ================== Header  useEffect  ' ) 
+
+  
+  if (!isloadcook) { //загрузка окончена
+    console.log( '==####################===== куки=', cookdata ) 
+
+  }
+
+}, [ cookdata ])
 
  
 
