@@ -38,12 +38,12 @@ export const apiSlice = createApi({
        
       const result = await queryFulfilled;
      
-      dispatch(
-        userLoggedIn({
-          accessToken: result.data.accessToken,
-          user: result.data.user,
-        })
-      );
+      //пока dispatch(
+      //пока   userLoggedIn({
+      //пока     accessToken: result.data.accessToken,
+      //пока     user: result.data.user,
+      //пока   })
+      //пока );
     } catch (error: any) {
       console.log(error);
     }
