@@ -33,7 +33,7 @@ const Login: FC<Props> = ({ setRoute, setOpen, refetch  }) => {
   //переменные состояния
   const [show, setShow] = useState(false);
   
-  //получаем ответ от запроса -авторизовываемся
+  //получаем ответ от запроса -авторизовываемся---------------------------
   const [login, { isSuccess, error }] = useLoginMutation();
 
   //после нажатия  отправим введенные данные
@@ -52,7 +52,7 @@ const Login: FC<Props> = ({ setRoute, setOpen, refetch  }) => {
    //данные получены от useRegisterMutation     
       toast.success("Login Successfully!");
       setOpen(false); //закроем окно входа - передает выше
-      refetch();
+     /////////// refetch();
     }
     if (error) { //если ошибка
       if ("data" in error) {
