@@ -30,7 +30,8 @@ export const apiSlice = createApi({
    loadUser: builder.query({
   query: (data) => ({
     url: "me",
-    method: "GET",
+    // method: "GET", сам заменил
+    method: "POST",
     credentials: "include" as const,
   }),
   async onQueryStarted(arg, { queryFulfilled, dispatch }) {
@@ -38,12 +39,12 @@ export const apiSlice = createApi({
        
       const result = await queryFulfilled;
      
-      //пока dispatch(
-      //пока   userLoggedIn({
-      //пока     accessToken: result.data.accessToken,
-      //пока     user: result.data.user,
-      //пока   })
-      //пока );
+      dispatch(
+         userLoggedIn({
+            accessToken: result.data.accessToken,
+           user: result.data.user,
+         })
+       );
     } catch (error: any) {
       console.log(error);
     }
