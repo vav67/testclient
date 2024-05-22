@@ -110,18 +110,18 @@ import React, { FC, useEffect, useState } from "react";
       }
     }
  
- //добавлю к сессиии   
+ //может это при перезагрузке нужно
 //----сам-----------------------------------------
-// if (user) {
-//   console.log( '!!!!!!!!! ЮЗЕР СУЩЕСТВУЕТ user=',  user)
-//               socialAuth({   //передаем данные для запроса в бд
-//                   email:  user?.email,
-//                     name:  user?.name,
-//                    avatar: user?.image,
-//                  });
+if (user) {
+  console.log( '!!!!!!!!! ЮЗЕР СУЩЕСТВУЕТ user=',  user)
+              socialAuth({   //передаем данные для запроса в бд
+                  email:  user?.email,
+                    name:  user?.name,
+                   avatar: user?.image,
+                 });
                  
-//             //  refetch();
-//              } 
+            //  refetch();
+             } 
 // --------------------------
 
 
