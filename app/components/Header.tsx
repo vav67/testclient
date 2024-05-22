@@ -51,7 +51,7 @@ import React, { FC, useEffect, useState } from "react";
   
   console.log( '****** Header **  запрос юзера    userData=', userData)
 
- /// const { data } = useSession(); //получаем данные ссессии(Google на GitHub )
+ const { data } = useSession(); //получаем данные ссессии(Google на GitHub )
   
 //// console.log( '**** Header ** сессия gogleвход data=', data)
 
@@ -97,31 +97,31 @@ import React, { FC, useEffect, useState } from "react";
  if (!user)
 {
       if (!userData) { //если нет входа просто пользователя
-      // if (data) { // есть вход из соц груп ( гугл, ....  )
-      //  console.log( '!!!!!!!!!! Header  useEffect приходит дата от запроса data=', data ) 
+      if (data) { // есть вход из соц груп ( гугл, ....  )
+       console.log( '!!!!!!!!!! Header  useEffect приходит дата от запроса data=', data ) 
 
-      //  socialAuth({   //передаем данные для запроса в бд из соц группы
-      //    email: data?.user?.email,
-      //   name: data?.user?.name,
-      //  avatar: data?.user?.image,
-      //   });
-      // refetch(); //повторяем загрузку пользователей
-       //   }
+       socialAuth({   //передаем данные для запроса в бд из соц группы
+         email: data?.user?.email,
+        name: data?.user?.name,
+       avatar: data?.user?.image,
+        });
+      refetch(); //повторяем загрузку пользователей
+         }
       }
     }
  
  //может это при перезагрузке нужно
 //----сам-----------------------------------------
-if (user) {
-  console.log( '!!!!!!!!! ЮЗЕР СУЩЕСТВУЕТ user=',  user)
-              socialAuth({   //передаем данные для запроса в бд
-                  email:  user?.email,
-                    name:  user?.name,
-                   avatar: user?.image,
-                 });
+// if (user) {
+//   console.log( '!!!!!!!!! ЮЗЕР СУЩЕСТВУЕТ user=',  user)
+//               socialAuth({   //передаем данные для запроса в бд
+//                   email:  user?.email,
+//                     name:  user?.name,
+//                    avatar: user?.image,
+//                  });
                  
-            //  refetch();
-             } 
+//             //  refetch();
+//              } 
 // --------------------------
 
 
@@ -138,8 +138,8 @@ if (user) {
   //      setLogout(true) // что инициирует запрос выхода через useLoadUserQuery
   //      }
   }
- //data, 
-}, [userData, isLoading]);
+ 
+}, [data,userData, isLoading]);
 
  
 

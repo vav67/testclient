@@ -1,7 +1,7 @@
 
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { userLoggedIn } from "../auth/authSlice";
-import { cookies } from 'next/headers'; //////
+/////////import { cookies } from 'next/headers'; //////
 
 //const cookieStore = cookies() ////
 //const token = cookieStore.get('access_token'); /////
@@ -34,7 +34,7 @@ export const apiSlice = createApi({
     url: "me",
     // method: "GET", сам заменил
     method: "POST",
-    headers: { Cookie: `token=ffgfdfdfdfdfdsfdssxrewererexqqqqqqqqqqq` } ,
+  ////////////////////  headers: { Cookie: `token=ffgfdfdfdfdfdsfdssxrewererexqqqqqqqqqqq` } ,
     credentials: "include" as const,
   }),
   async onQueryStarted(arg, { queryFulfilled, dispatch }) {

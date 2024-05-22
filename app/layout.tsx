@@ -55,7 +55,7 @@ export default function RootLayout({
  {/* Этот провайдер контекста позволяет вашему приложению получить 
     доступ к данным сессии из любого места вашего приложения,  не 
  передавая их как пропсы  => const { data: session } = useSession(); */}
-              {/* <SessionProvider>  */}
+            <SessionProvider>  
  {/* наша тема  */}
   
  <ThemeProvider attribute= 'class'  defaultTheme="light"  > 
@@ -68,7 +68,7 @@ export default function RootLayout({
             <Toaster position="top-center" reverseOrder={false} />     
              
              </ThemeProvider>  
-          {/* </SessionProvider >  */}
+          </SessionProvider >   
           </Providers>    
         
        </body>
