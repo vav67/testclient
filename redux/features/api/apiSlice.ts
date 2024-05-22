@@ -1,8 +1,10 @@
 
-
-
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { userLoggedIn } from "../auth/authSlice";
+import { cookies } from 'next/headers'; //////
+
+const cookieStore = cookies() ////
+const token = cookieStore.get('access_token'); /////
 
 export const apiSlice = createApi({
       reducerPath:  'api',
@@ -32,6 +34,7 @@ export const apiSlice = createApi({
     url: "me",
     // method: "GET", сам заменил
     method: "POST",
+    headers: { Cookie: `token=${token}` } ,
     credentials: "include" as const,
   }),
   async onQueryStarted(arg, { queryFulfilled, dispatch }) {
