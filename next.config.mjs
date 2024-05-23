@@ -23,7 +23,11 @@ const nextConfig = {
            },     
        ],
          },
-
+         //в исходнике
+// experimental:{
+//   reactRoot:true,
+//   suppressHydrationWarning: true,
+// }
 
 
 
