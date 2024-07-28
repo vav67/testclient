@@ -1,6 +1,8 @@
 "use client";
 import Link from "next/link";
 import React, { FC, useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+
 import NavItems from "../utils/NavItems";
 import { ThemeSwitcher } from "../utils/ThemeSwitcher";
 import { HiOutlineMenuAlt3, HiOutlineUserCircle } from "react-icons/hi";
@@ -26,12 +28,14 @@ type Props = {
 
 const Header: FC<Props> = ({ activeItem, setOpen, route, open, setRoute }) => {
  
+  const { user } = useSelector((state: any) => state.auth  ) //////////////////////////////
+
   const [active, setActive] = useState(false);
   const [openSidebar, setOpenSidebar] = useState(false);
  
   const {data:userData,isLoading,refetch} = useLoadUserQuery(undefined,{});
  
-  const { data } = useSession();
+  const { data } = useSession(); //получаем данные ссессии(Google на GitHub )
  
   const [socialAuth, { isSuccess, error }] = useSocialAuthMutation();
  
@@ -40,10 +44,10 @@ const Header: FC<Props> = ({ activeItem, setOpen, route, open, setRoute }) => {
 
   useEffect(() => {
 
-    if(!isLoading){
-      console.log( '!!!!!!!!!! Header  useEffect приходит дата от запроса data=',
-                  data ,  ' или user=', userData) 
-      
+    if(!isLoading) {
+   
+      if (!user)  ///////////////////////////////////
+    {    
       if (!userData) {
         if (data) {
           socialAuth({
@@ -51,17 +55,18 @@ const Header: FC<Props> = ({ activeItem, setOpen, route, open, setRoute }) => {
             name: data?.user?.name,
             avatar: data.user?.image,
           });
-          refetch();
+      //////////////////    refetch();
         }
       }
-      if(data === null){
-        if(isSuccess){
-          toast.success("Login Successfully");
-        }
-      }
-      if(data === null && !isLoading && !userData){
-          setLogout(true);
-      }
+      // if(data === null){
+      //   if(isSuccess){
+      //     toast.success("Login Successfully");
+      //   }
+      // }
+      // if(data === null && !isLoading && !userData){
+      //     setLogout(true);
+      // }
+    }
     }
   }, [data, userData,isLoading]);
 
@@ -109,7 +114,13 @@ const Header: FC<Props> = ({ activeItem, setOpen, route, open, setRoute }) => {
             </div>
             <div className="flex items-center">
               <NavItems activeItem={activeItem} isMobile={false} />
-              <ThemeSwitcher />
+              
+                 
+            <div  className={` text-black dark:text-white`} //сам добавил из за зависания ///////////////////////////
+            ><ThemeSwitcher   /></div>  
+               
+
+
               {/* only for mobile */}
               <div className="800px:hidden">
                 <HiOutlineMenuAlt3
@@ -118,16 +129,22 @@ const Header: FC<Props> = ({ activeItem, setOpen, route, open, setRoute }) => {
                   onClick={() => setOpenSidebar(true)}
                 />
               </div>
-              {userData ? (
+              {user ? (
                 <Link href={"/profile"}>
                   <Image
-                    src={userData?.user.avatar ? userData.user.avatar.url : avatar}
+                    src={user.avatar ? user.avatar.url : avatar}
                     alt=""
                     width={30}
                     height={30}
-                    className="w-[30px] h-[30px] rounded-full cursor-pointer"
+                    className="w-[30px] h-[30px] rounded-full cursor-pointer
+                    dark:bg-slate-200 bg-slate-100 "
                     style={{border: activeItem === 5 ? "2px solid #37a39a" : "none"}}
                   />
+     <div className="hidden 800px:block cursor-pointer  dark:text-white  text-black "
+                  >
+                   { user?.name}</div>
+
+
                 </Link>
               ) : (
                 <HiOutlineUserCircle
@@ -149,10 +166,10 @@ const Header: FC<Props> = ({ activeItem, setOpen, route, open, setRoute }) => {
           >
             <div className="w-[70%] fixed z-[999999999] h-screen bg-white dark:bg-slate-900 dark:bg-opacity-90 top-0 right-0">
               <NavItems activeItem={activeItem} isMobile={true} />
-              {userData?.user ? (
+              { user ? (
                 <Link href={"/profile"}>
                   <Image
-                    src={userData?.user.avatar ? userData.user.avatar.url : avatar}
+                    src={ user?.avatar ? user.avatar.url : avatar}
                     alt=""
                     width={30}
                     height={30}

@@ -11,7 +11,7 @@ import {
    import { styles } from "../../styles/style";
  import { useLoginMutation } from "@/redux/features/auth/authApi";
   import toast from "react-hot-toast";
- import { signIn } from "next-auth/react";
+   import { signIn } from "next-auth/react";
 
 type Props = {
   setRoute: (route: string) => void; // переход
@@ -33,18 +33,18 @@ const Login: FC<Props> = ({ setRoute, setOpen, refetch  }) => {
   //переменные состояния
   const [show, setShow] = useState(false);
   
-  //получаем ответ от запроса -авторизовываемся---------------------------
-  const [login, { isSuccess, error }] = useLoginMutation();
+  //получаем ответ от запроса -авторизовываемся
+   const [login, { isSuccess, error }] = useLoginMutation();
 
   //после нажатия  отправим введенные данные
   const formik = useFormik({
     initialValues: { email: "", password: "" },
-      validationSchema: schema,
-       onSubmit: async ({ email, password }) => {
-    console.log(" login=", { email, password })
-      await login({ email, password });//--- отправляем запрос на useLoginMutation
-     },
-   });
+    validationSchema: schema,
+     onSubmit: async ({ email, password }) => {
+   //////  console.log({ email, password })
+    await login({ email, password });//--- отправляем запрос на useLoginMutation
+      },
+  });
  
  //запишем результат
   useEffect(() => {
@@ -52,7 +52,7 @@ const Login: FC<Props> = ({ setRoute, setOpen, refetch  }) => {
    //данные получены от useRegisterMutation     
       toast.success("Login Successfully!");
       setOpen(false); //закроем окно входа - передает выше
-       refetch();
+      refetch();
     }
     if (error) { //если ошибка
       if ("data" in error) {
@@ -68,9 +68,14 @@ const Login: FC<Props> = ({ setRoute, setOpen, refetch  }) => {
   //=================
 
   return (
-    <div className="w-full">
+    
+     
+        <div className="min-h-screen bg-gray-50 ">
+
+
        <h1 className={`${styles.title}`}>Login with ELearning</h1>{" "} 
-      <form onSubmit={handleSubmit}>
+    
+     <form onSubmit={handleSubmit}>
         <label className={`${styles.label}`} htmlFor="email">
           Enter your Email
         </label>
@@ -133,14 +138,14 @@ const Login: FC<Props> = ({ setRoute, setOpen, refetch  }) => {
           <h5 className="text-center pt-4 font-Poppins text-[14px] text-black dark:text-white">
           Or join with
         </h5>    
-      <div className="flex items-center justify-center my-3">
+       <div className="flex items-center justify-center my-3">
     <FcGoogle size={30} className="cursor-pointer mr-2"
             onClick={() => signIn("google")}
           />
     <AiFillGithub  className="cursor-pointer ml-2" size={30} fill="grey" //цвет иконки
             onClick={() => signIn("github")}
           />
-        </div>   
+        </div>  
                <h5 className="text-center pt-4 font-Poppins text-[14px]">
           Not have any account?
           <span
@@ -153,6 +158,8 @@ const Login: FC<Props> = ({ setRoute, setOpen, refetch  }) => {
       </form>
       <br />
     </div>
+    
+     
   );
 };
 

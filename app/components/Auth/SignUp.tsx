@@ -35,25 +35,25 @@ const Signup: FC<Props> = ({ setRoute }) => {
 //переменные состояния
   const [show, setShow] = useState(false);
   //получаем ответ от запроса
-//   const [register, { data, error, isSuccess }] = useRegisterMutation();
-//   //запишем результат
-//   useEffect(() => {
-//     if (isSuccess) {
-//       //console.log( '-----данные получены ' )
-//  //данные получены от useRegisterMutation    
-//       const message = data?.message || "Registration successful";
-//       toast.success(message);
-//       setRoute("Verification");
-//     }
-//     if (error) {  //если ошибка
-//      // console.log( '-----если ошибка=', error ) toast.error( '----если ошибка');
-//       if ("data" in error) {
-//         const errorData = error as any; 
-//         toast.error(errorData.data.message);
-//      // console.log( 'это ошибка=', errorData.data.message )
-//       }
-//     }
-//   }, [isSuccess, error]);
+  const [register, { data, error, isSuccess }] = useRegisterMutation();
+  //запишем результат
+  useEffect(() => {
+    if (isSuccess) {
+      //console.log( '-----данные получены ' )
+ //данные получены от useRegisterMutation    
+      const message = data?.message || "Registration successful";
+      toast.success(message);
+      setRoute("Verification");
+    }
+    if (error) {  //если ошибка
+     // console.log( '-----если ошибка=', error ) toast.error( '----если ошибка');
+      if ("data" in error) {
+        const errorData = error as any; 
+        toast.error(errorData.data.message);
+     // console.log( 'это ошибка=', errorData.data.message )
+      }
+    }
+  }, [isSuccess, error]);
   
 
   //  отправим введенные данные
@@ -61,11 +61,11 @@ const Signup: FC<Props> = ({ setRoute }) => {
     initialValues: { name: "", email: "", password: "" },
     validationSchema: schema,
     onSubmit: async ({ name, email, password }) => {
-               //  console.log({ name, email, password })
-                  //setRoute("Verification")
+    //  console.log({ name, email, password })
+    //setRoute("Verification")
        const data = { name,  email, password  };
   
-///////////     await register(data); //данные отправили в слайс для сохранения store
+     await register(data); //данные отправили в слайс для сохранения store
     },
   });
  
@@ -75,8 +75,11 @@ const Signup: FC<Props> = ({ setRoute }) => {
   //========================
 
   return (
-    <div className="w-full">
+    <div className="min-h-screen bg-gray-50  ">
+ 
       <h1 className={`${styles.title}`}>Join to ELearning</h1>{" "}
+     
+      <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-md">
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
           <label className={`${styles.label}`} htmlFor="name">
@@ -157,10 +160,10 @@ const Signup: FC<Props> = ({ setRoute }) => {
         <h5 className="text-center pt-4 font-Poppins text-[14px] text-black Idark:text-white">
           Or join with
         </h5>
-        {/* <div className="flex items-center justify-center my-3">
+        <div className="flex items-center justify-center my-3">
           <FcGoogle size={30} className="cursor-pointer mr-2" />
           <AiFillGithub size={30} fill="grey" className="cursor-pointer ml-2" />
-        </div> */}
+        </div>
 
         <h5 className="text-center pt-4 font-Poppins text-[14px]">
           Already have an account?
@@ -171,9 +174,12 @@ const Signup: FC<Props> = ({ setRoute }) => {
             Sign in
           </span>
         </h5>
+    
       </form>
+      </div>
       <br />
     </div>
+   
   );
 };
 

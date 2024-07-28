@@ -18,7 +18,7 @@ import Footer from "./components/Footer";
 //const Page: FC<Props> = (props) => {
 
    const Page = () => {
-
+    console.log( '======== Page начало загрузки')
   //начальное состояния (переменные)  
   const [open, setOpen] = useState(false);
  const [activeItem, setActiveItem] = useState(0);

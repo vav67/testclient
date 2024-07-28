@@ -78,7 +78,7 @@ export default function RootLayout({
  
   const Custom: FC<{ children: React.ReactNode }> = ({ children }) => {
     
-  // пока нет  const {   isLoading  } = useLoadUserQuery({});
+  const {   isLoading  } = useLoadUserQuery({});
   
    
 
@@ -92,12 +92,12 @@ export default function RootLayout({
 
  // console.log(  '======== итак children='  )   
 
+     return ( 
+        <>{isLoading ? <Loader /> : <div>{children}</div>}</> 
+     )
     // return ( 
-    //   <>{isLoading ? <Loader /> : <div>{children}</div>}</> 
+    //   <>{  <div>{children}</div>}</> 
     // )
-    return ( 
-      <>{  <div>{children}</div>}</> 
-    )
   } 
 
  /**

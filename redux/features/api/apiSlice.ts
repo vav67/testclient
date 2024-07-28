@@ -10,7 +10,8 @@ export const apiSlice = createApi({
       reducerPath:  'api',
   baseQuery: fetchBaseQuery({ baseUrl: process.env.NEXT_PUBLIC_SERVER_URI, }),
   endpoints: (builder) => ({
-    
+ 
+//------useRefreshTokenQuery------------------------------------------
     refreshToken: builder.query({
       query: (data) => ({
         url: "refresh",
@@ -18,7 +19,7 @@ export const apiSlice = createApi({
         credentials: "include" as const,
       }),
     }),
- //-----сам получить куки----------------------------------------
+ //----useGetCookieQuery -сам получить куки----------------------------------------
   //  получить куки
   getCookie: builder.query({
     query: () => ({
@@ -28,7 +29,7 @@ export const apiSlice = createApi({
     }),
   }),
 
- // --------------------логинимся---------------------------------
+ // ---useLoadUserQuery-логинимся---------------------------------
    loadUser: builder.query({
   query: (data) => ({
     url: "me",
