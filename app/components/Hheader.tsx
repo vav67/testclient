@@ -33,7 +33,9 @@ const Hheader = () => {
              
         }
         console.log( '!!!!!!!!!! HHHHHHH Hheader error=',  error)
-      }, [ data, error ]);
+      }, [ data, error,
+        isLoading /////////////////добавил   при проверке
+      ]);
    
      //console.log( '============курсы data=', data )
      //console.log( '***************==курсы courses=', courses)

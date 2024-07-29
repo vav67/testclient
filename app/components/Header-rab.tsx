@@ -139,7 +139,9 @@ import React, { FC, useEffect, useState } from "react";
   //      }
   }
  
-}, [data,userData, isLoading]);
+}, [data, userData, isLoading,
+  refetch, socialAuth, user  /////////////////добави три гштуки при проверке
+]);
 
  
 

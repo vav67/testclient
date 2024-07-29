@@ -17,26 +17,13 @@ const authSlice = createSlice({
  userRegistration: (state, action: PayloadAction<{ token: string }>) => {
    state.token = action.payload.token;
  },
-  // userRegistration: (state, action) => {
-  //        state.token = action.payload.token;
-  //     },
-// также логин пользователя
-    //  userLoggedIn: (state, action) => {
-    //        state.token = action.payload.accessToken;
-    //         state.user = action.payload.user
-    //    },
+ 
 userLoggedIn: ( state, action: PayloadAction<{ accessToken: string; user: string }>
     ) => {
-        // if ( action.payload.user === undefined   && action.payload.accessToken === undefined  )
-        // {
-     //////// console.log( '======клиент =редюсер==userLoggedIn======== ', action.payload )  
-      // state.token = ''
-      // state.user =  ''
-      // }
-      // else {   
+  
       state.token = action.payload.accessToken; //токен доступа
       state.user = action.payload.user;
-      //  }
+    
     },
 
 //и выход пользователя из системы    

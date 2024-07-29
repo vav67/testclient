@@ -96,7 +96,9 @@ const { data, isLoading } = useGetUsersAllCoursesQuery(undefined, {});
         .filter((course: any) => course !== undefined);
         setCourses(filteredCourses); //запишем
       }
-    }, [data]);
+    }, [data,
+      user.courses  /////////////////добавил   при проверке
+    ]);
 
  
 //  магазин     
