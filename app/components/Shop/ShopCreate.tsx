@@ -1,5 +1,7 @@
  "use client";
  import { toast } from "react-hot-toast" 
+ import Image from "next/image";
+
  import React, { FC, useEffect, useState } from "react";
  import Link from "next/link";
  import { useSelector } from "react-redux";
@@ -33,6 +35,7 @@ const ShopCreate: FC<Props> = ({ setRoute,  activeItem } ) => {
   const [zipCode, setZipCode] = useState<any>();//почтовый индекс
   const [avatar, setAvatar] = useState<any>(null);
   const [password, setPassword] = useState("");
+
   const [visible, setVisible] = useState(false);
   const [scroll, setScroll] = useState(false);
   //получаем ответ от запроса
@@ -112,7 +115,7 @@ const ShopCreate: FC<Props> = ({ setRoute,  activeItem } ) => {
 //            toast.error(error.response.data.message);
 //          });
 await register({ name, email, password, address, phoneNumber, 
-  zipCode }); //данные отправили в слайс для сохранения store
+  zipCode  }); //данные отправили в слайс для сохранения store
 
 
   }
@@ -330,7 +333,7 @@ useEffect(() => {
               <div className="mt-2 flex items-center">
                 <span className="inline-block h-8 w-8 rounded-full overflow-hidden">
                   {avatar ? (
-                    <img
+                    <Image
                     src={URL.createObjectURL(avatar)}
                     //  src={avatar}
                       alt="avatar"

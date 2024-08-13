@@ -1,6 +1,5 @@
 "use client";
-// удалено ч2 01-47-43  import type { Metadata } from "next";
-//удалено import { Inter } from "next/font/google";
+ 
  
 import "./globals.css";
   import { Poppins } from "next/font/google";
@@ -17,9 +16,9 @@ import { ThemeProvider } from "./utils/theme-provider";
    import { useLoadUserQuery, useRefreshTokenQuery } from "@/redux/features/api/apiSlice";
   import Loader from "./components/Loader/Loader";
  
-  // import socketIO from "socket.io-client";
-  // const ENDPOINT = process.env.NEXT_PUBLIC_SOCKET_SERVER_URI || "";
-  // const socketId = socketIO(ENDPOINT, { transports: ["websocket"] }); //индетификатор сокета
+// пока  import socketIO from "socket.io-client";
+ // пока  const ENDPOINT = process.env.NEXT_PUBLIC_SOCKET_SERVER_URI || "";
+ // пока  const socketId = socketIO(ENDPOINT, { transports: ["websocket"] }); //индетификатор сокета
 
 
 //добавили шрифты (использ они в tailwind.config.ts)
@@ -55,20 +54,20 @@ export default function RootLayout({
  {/* Этот провайдер контекста позволяет вашему приложению получить 
     доступ к данным сессии из любого места вашего приложения,  не 
  передавая их как пропсы  => const { data: session } = useSession(); */}
-            <SessionProvider> 
+              <SessionProvider> 
  {/* наша тема  */}
   
  <ThemeProvider attribute= 'class'  defaultTheme="light"  > 
       {/*    attribute= '  class  '  defaultTheme='system' enableSystem   > */}
    
- <Custom>{children}</Custom>    
-  {/* <Custom><div>{children}</div> </Custom>      */}
-               {/* {children}   */}
+  <Custom>{children}</Custom>     
+   {/* <Custom><div>{children}</div> </Custom>    */}
+               {/* {children}     */}
          
             <Toaster position="top-center" reverseOrder={false} />     
              
              </ThemeProvider>  
-          </SessionProvider >   
+          </SessionProvider > 
           </Providers>    
         
        </body>
@@ -78,26 +77,22 @@ export default function RootLayout({
  
   const Custom: FC<{ children: React.ReactNode }> = ({ children }) => {
     
-  const {   isLoading  } = useLoadUserQuery({});
+   ////////// const {   isLoading  } = useLoadUserQuery({});
   
    
-
-    //  useEffect(() => {
+// пока сокет не запускаем
+     useEffect(() => {
  
-    //    socketId.on("connection", () => {}) //подключаемся
-    //  }, []);
-
+     ///пока  socketId.on("connection", () => {}) //подключаемся
+     }, []);
  
 
-
- // console.log(  '======== итак children='  )   
-
-     return ( 
-        <>{isLoading ? <Loader /> : <div>{children}</div>}</> 
-     )
-    // return ( 
-    //   <>{  <div>{children}</div>}</> 
-    // )
+    return ( 
+      // <>{isLoading ? <Loader /> : <div>{children}</div>}</> 
+    
+      <>{children}</> 
+    )
+   
   } 
 
  /**

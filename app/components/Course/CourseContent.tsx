@@ -17,6 +17,10 @@ const CourseContent = ({ id,user }: Props) => {
   const [route, setRoute] = useState('Login')
   const data = contentData?.content;
 
+
+  const[ profilepage, setProfilepage] = useState(false) //это не профайл пэйдж
+  const [pagedatauser, setPagedatauser] = useState(null);
+
   const [activeVideo, setActiveVideo] = useState(0);
 
   return (
@@ -25,7 +29,15 @@ const CourseContent = ({ id,user }: Props) => {
         <Loader />
       ) : (
         <>
-          <Header activeItem={1} open={open} setOpen={setOpen} route={route} setRoute={setRoute} />
+             <Header activeItem={1} open={open} setOpen={setOpen} 
+   route={route} 
+   setRoute={setRoute} 
+   profilepage = {profilepage}
+   userData ={pagedatauser}
+   //refetch={refetch}
+   
+   
+   />
           <div className="w-full grid 800px:grid-cols-10">
             <Heading
               title={data[activeVideo]?.title}

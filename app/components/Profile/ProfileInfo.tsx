@@ -32,7 +32,7 @@ const ProfileInfo: FC<Props> = ({ avatar, user, theme }) => {
 
  const {} = useLoadUserQuery(undefined, { skip:loadUser ? false : true });
 
-  
+  // Изменяем аватар
    const imageHandler = async (e: any) => {
     
     const fileReader = new FileReader();
@@ -53,7 +53,7 @@ const ProfileInfo: FC<Props> = ({ avatar, user, theme }) => {
    };
 
   useEffect(() => {
-    console.log( '*********** проверим результат isSuccess=', isSuccess) 
+   // console.log( '*********** проверим результат isSuccess=', isSuccess) 
 // проверим результат
     // if (isSuccess || success) {  
     // //  console.log( '***********  результат isSuccess') 
@@ -83,12 +83,12 @@ const ProfileInfo: FC<Props> = ({ avatar, user, theme }) => {
     if (name !== "") {  await editProfile({ name: name,   });  }
    };
  
-   const ppp = async (e: any) => {
-    e.preventDefault();
-    console.log( '***клик********  ') 
-    setLoadUser(true);
+  //  const ppp = async (e: any) => {
+  //   e.preventDefault();
+  //   console.log( '***клик********  ') 
+  //   setLoadUser(true);
 
-  };
+  // };
 
   return (
     <>
@@ -157,13 +157,7 @@ const ProfileInfo: FC<Props> = ({ avatar, user, theme }) => {
           </div>
         </form>  
         <br />
-        <div>
-        <AiOutlineCamera size={20} 
-      className={` ${theme === 'dark' ? "fill-[#f8f8f8]" : "fill-[#080808]"  } ` }
-      onClick={  ppp   }
-            />
-
-        </div>
+  
       </div>
     </>
   );

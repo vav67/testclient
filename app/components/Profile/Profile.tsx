@@ -1,5 +1,5 @@
 "use client";
-import React, {  useEffect, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useSelector } from "react-redux";
@@ -13,22 +13,25 @@ import SideBarProfile from "./SideBarProfile"; //боковая панель
 
   import { useTheme } from "next-themes" //сам тема
 import { styles } from "@/app/styles/style";
- 
+import CustomModal from "@/app/utils/CustomModal";
+import ShopCreate from "../Shop/ShopCreate";
+import ShopVerification from "../Shop/ShopVerification";
+import ShopLogin from "../Shop/ShopLogin"; 
  
 
-// type Props = {
+type Props = {
 
-//     //  open: boolean;  //наш набор открыт
-//     // setOpen: (open: boolean) => void;
-//     user: any;
-//     avatar: string | null;
+     open: boolean;  //наш набор открыт
+   setOpen: (open: boolean) => void;
+    user: any;
+    avatar?: string | null;
 
  
-//   };
+  };
   
-  //const Profile: FC<Props> = ({ setOpen, open, user  }) => {
-    const Profile = ( ) => {
-      const { user } = useSelector((state: any) => state.auth);
+ const Profile: FC<Props> = ({ setOpen, open, user  }) => {
+ //   const Profile: FC = ( ) => {
+   ////   const { user } = useSelector((state: any) => state.auth);
     
       const router = useRouter();
       //начальное состояния (переменные) 
@@ -49,7 +52,9 @@ const { data, isLoading } = useGetUsersAllCoursesQuery(undefined, {});
  
 
      //вызов api запрос на выход пользователя 
-     //если вы хотите предпринять дополнительные действия (например, отправить запрос на сервер) перед выходом пользователя из системы. Это может быть полезно, например, для очистки данных на стороне сервера перед завершением сеанса пользователя.
+     //если вы хотите предпринять дополнительные действия (например, отправить запрос на сервер) 
+     //перед выходом пользователя из системы. Это может быть полезно, например, для очистки данных на
+     // стороне сервера перед завершением сеанса пользователя.
      const {} = useLogOutQuery(undefined, {skip: !logout ? true : false,   });
 
       const [active, setActive] = useState(1);
@@ -96,9 +101,7 @@ const { data, isLoading } = useGetUsersAllCoursesQuery(undefined, {});
         .filter((course: any) => course !== undefined);
         setCourses(filteredCourses); //запишем
       }
-    }, [data,
-      user.courses  /////////////////добавил   при проверке
-    ]);
+    }, [data]);
 
  
 //  магазин     
@@ -195,10 +198,6 @@ const { data, isLoading } = useGetUsersAllCoursesQuery(undefined, {});
      </div>
  
  
-
-
-
-
     )
 }
 

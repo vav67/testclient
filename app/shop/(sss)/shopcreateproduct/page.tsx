@@ -8,20 +8,25 @@ import { useSelector } from 'react-redux'
 import { useRouter } from "next/navigation";
 //import { useMeSellerQuery } from '@/redux/features/shop/shopApi';
 
-import CustomModal from '../utils/CustomModal';
-import ShopLogin from '../components/Shop/ShopLogin';
-import ShopCreate from '../components/Shop/ShopCreate';
-import ShopVerification from '../components/Shop/ShopVerification';
-import Loader from '../components/Loader/Loader';
+// import CustomModal from '../utils/CustomModal';
+// import ShopLogin from '../components/Shop/ShopLogin';
+// import ShopCreate from '../components/Shop/ShopCreate';
+// import ShopVerification from '../components/Shop/ShopVerification';
+ // import Loader from '../components/Loader/Loader';
 
-import DashboardHeaderShop from '../components/Shop/Layout/DashboardHeaderShop';
-//import DashboardSideBarShop from '../components/Shop/Layout/DashboardSideBarShop';
-import DashboardSideBarShop from '../components/Shop/Layout/DashboardSideBarShop';
-
-
+// import DashboardHeaderShop from '../components/Shop/Layout/DashboardHeaderShop';
+// import DashboardSideBarShop from '../components/Shop/Layout/DashboardSideBarShop';
 import { useMeSellerQuery } from '@/redux/features/shop/shopApi';
 import { useLoadUserQuery } from '@/redux/features/api/apiSlice';
-
+import ShopSettings from '@/app/components/Shop/ShopSettings';
+import Loader from '@/app/components/Loader/Loader';
+import DashboardHeaderShop from '@/app/components/Shop/Layout/DashboardHeaderShop';
+import DashboardSideBarShop from '@/app/components/Shop/Layout/DashboardSideBarShop';
+import CustomModal from '@/app/utils/CustomModal';
+import ShopCreate from '@/app/components/Shop/ShopCreate';
+import ShopVerification from '@/app/components/Shop/ShopVerification';
+import ShopLogin from '@/app/components/Shop/ShopLogin';
+import Shopcreateproduct from '@/app/components/Shop/Shopcreateproduct';
 //import { useMeSellerQuery } from '@/redux/features/api/apiSlice';
 
 
@@ -30,8 +35,8 @@ const Page = () => {
 
    
 
-    const {data:userData ,isLoading:isLoadinguser, error } = useLoadUserQuery(undefined, {}); 
-    const { data: sellerData, isLoading, error:sellererror, refetch } =  useMeSellerQuery({}); 
+    const {data:userData ,isLoading:isLoadinguser, error, refetch} = useLoadUserQuery(undefined, {}); 
+    const { data: sellerData, isLoading, error:sellererror } =  useMeSellerQuery({}); 
 
    //начальное состояния (переменные)  
    const [open, setOpen] = useState(false);
@@ -41,7 +46,7 @@ const Page = () => {
    const [route, setRoute] = useState("Login");
    
    
-   console.log( '==== shopdashboardpage =', sellererror  )   
+ 
 
 
  useEffect( () => {
@@ -75,7 +80,7 @@ console.log( ' =   useEffect  sellerData=', sellerData )
    
  
 
- console.log( '======userData =', userData?.user  )   
+//console.log( '======userData =', userData?.user  )   
 
   return (
    <> {( isLoading || isLoadinguser) ? (
@@ -85,7 +90,7 @@ console.log( ' =   useEffect  sellerData=', sellerData )
     <div className="w-full flex " >
     <Link href={`/shop/${sellerData?.seller?._id}` }  className="w-full  ">
   
-  первый     page==МАГАЗИН (по айди)=====DASHBOARD=    sellerData= {sellerData?.seller?.name}   =============
+   это create    page==МАГАЗИН (по айди)=====DASHBOARD=    sellerData= {sellerData?.seller?.name}   =============
        </Link>
     <Link href={"/pageproba" }  className="w-full  ">
    pproba (проба перехода по страницам ) {sellerData?.seller?.name}  {userData?.user?.name} 
@@ -102,10 +107,10 @@ console.log( ' =   useEffect  sellerData=', sellerData )
          <DashboardHeaderShop   seller={ sellerData.seller }  /> {/*  заголовок */}
          <div className="flex items-start justify-between w-full">
             <div className="w-[80px] 800px:w-[330px]">
-   <DashboardSideBarShop active={1} seller={sellerData.seller}
+   <DashboardSideBarShop active={4} seller={sellerData.seller}
         />   {/*     *боковая панель */}
             </div>
-         {/* <DashboardHero />  */}
+         <Shopcreateproduct />    
           </div>
           </>
                         )}     
@@ -121,7 +126,7 @@ console.log( ' =   useEffect  sellerData=', sellerData )
               setRoute={setRoute}
               activeItem={activeItem}
               component={ShopCreate}
-             refetch={refetch}
+           //  refetch={refetch}
             />
           )}  
 
@@ -132,7 +137,7 @@ console.log( ' =   useEffect  sellerData=', sellerData )
               setRoute={setRoute}
               activeItem={activeItem}
               component={ShopVerification}
-             refetch={refetch}
+           //  refetch={refetch}
             />
           )}  
 <>
@@ -145,7 +150,7 @@ console.log( ' =   useEffect  sellerData=', sellerData )
               setRoute={setRoute}
               activeItem={activeItem}
               component={ShopLogin}
-              refetch={refetch}
+           //  refetch={refetch}
             />
           )}  
           </>

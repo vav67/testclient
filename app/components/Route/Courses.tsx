@@ -1,4 +1,3 @@
-"use client";
 import { useGetUsersAllCoursesQuery } from "@/redux/features/courses/coursesApi";
 import React, { useEffect, useState } from "react";
  import CourseCard from "../Course/CourseCard";
@@ -6,28 +5,27 @@ import React, { useEffect, useState } from "react";
 type Props = {};
 
 const Courses = (props: Props) => {
-  //загрузка
-   const { data, isLoading } = useGetUsersAllCoursesQuery({});
- //состояния
-   const [courses, setCourses] = useState<any[]>([]);
- 
-   useEffect(() => {
-  //   console.log(" ========useEffect=============  ", data )
-    // полученные данные запишем в состояние 
-   
-    if (data) {
-     setCourses(data.course); //!!! поле course
-   }
-   
-   }, [ data ]);
+ //загрузка
+  const { data, isLoading } = useGetUsersAllCoursesQuery({});
+//состояния
+  const [courses, setCourses] = useState<any[]>([]);
 
-  //console.log( '============курсы data=', data )
-  //console.log( '***************==курсы courses=', courses)
+  useEffect(() => {
+ //   console.log(" ========useEffect=============  ", data )
+   // полученные данные запишем в состояние 
+  
+   if (data) {
+    setCourses(data.course); //!!! поле course
+  }
+  
+  }, [ data ]);
+
+ 
 
   return (
     <div>
     {isLoading ? (
-      <p>Loading(Courses)...</p>
+      <p>Loading...</p>
     ) : (
       <div className={`w-[90%] 800px:w-[80%] m-auto`}>
         <h1 className="text-center font-Poppins text-[25px] leading-[35px]
@@ -46,7 +44,7 @@ const Courses = (props: Props) => {
               
                <CourseCard 
                    item={item} 
-                   key={index} 
+                   key={`courses-${index}`} 
                />
                 
            
@@ -60,4 +58,5 @@ const Courses = (props: Props) => {
 };
 
 export default Courses;
+
 
